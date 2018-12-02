@@ -18,5 +18,5 @@ const server = net.createServer(function (stream) {
     });
 });
 
-server.listen(3000, 'localhost');
+server.listen(3000);
 
