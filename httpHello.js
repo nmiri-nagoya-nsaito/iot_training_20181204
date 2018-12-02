@@ -1,14 +1,19 @@
-// HTTPサーバ版　Hello World
-//
+// express を用いたHTTP版 Hello Worldサンプル(http_hello.js)
 // Webブラウザで http://<ラズベリーパイのIPアドレス>:3000/ にアクセスすると
 // Hello World を表示する
-const http = require('http');
 
-// 3000番ポートで待ち受け．リクエストイベントが発生したらメッセージを表示する
-http.createServer(function (request, response) {
-    response.writeHead(200, {'Content-Type': 'text/plain'});
-    response.end('Hello World\n');
-}).listen(3000);
+// expressの初期化
+var express = require('express');
+var app = express();
 
-// 起動ログの表示
-console.log('Server running at http://127.0.0.1:3000/');
+// ルートパス(/)へのGETアクセスを受け取った時，メッセージを表示する
+app.get('/', function (req, res) {
+  console.log('accessed to "/" from' + req.ip);
+  res.send('Hello World!');
+});
+
+// 3000番ポートで待ち受け
+app.listen(3000, function () {
+  console.log('server start');
+});
+
